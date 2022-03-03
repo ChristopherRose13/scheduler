@@ -5,6 +5,8 @@ describe("Navigation", () => {
 
   it("should navigate to tuesday", () => {
     cy.visit("/")
-    cy.get('li').contains('Tuesday').click()
+    cy.contains("[data-testid=day]","Tuesday")
+      .click()
+      .should("have.css", "background-color", "rgb(242, 242, 242)");
   })
 });

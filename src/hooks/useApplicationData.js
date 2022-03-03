@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
+//on start up to get data from servers
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
@@ -16,19 +17,15 @@ export default function useApplicationData() {
       axios.get('http://localhost:8001/api/appointments'),
       axios.get('http://localhost:8001/api/interviewers')
     ]).then((all) => {
-      // console.log(all[0]); // first
-      // console.log(all[1]); // second
-      // console.log(all[2]); // third
 
       const [days, appointments, interviewers] = all;
-      console.log(days)
       setState(prev => ({ ...prev, days: days.data, appointments: appointments.data, interviewers: interviewers.data }));
-      console.log("axios interviewers: ", interviewers.data)
     });
   }, [])
 
   const setDay = day => setState({ ...state, day });
 
+  //used for calculating number of available spots - makes string day into an index for the array
   function findDay(day) {
     const daysOfWeek = {
       Monday: 0,
@@ -40,8 +37,9 @@ export default function useApplicationData() {
     return daysOfWeek[day];
   }
 
+  
   function bookInterview(id, interview) {
-    console.log(id, interview);
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -52,9 +50,10 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment, ).then(
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment,).then(
       (res) => {
 
+        //updates the number of spots remaining for the day
         const dayOfWeek = findDay(state.day);
         let day = {
           ...state.days[dayOfWeek],
@@ -75,7 +74,7 @@ export default function useApplicationData() {
 
         let days = state.days;
         days[dayOfWeek] = day;
-        
+
         setState({
           ...state,
           appointments
@@ -85,7 +84,7 @@ export default function useApplicationData() {
   }
 
   function cancelInterview(id) {
-    console.log(id);
+
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -96,28 +95,27 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`, {appointment}).then(
+    return axios.delete(`http://localhost:8001/api/appointments/${id}`, { appointment }).then(
       (res) => {
-        //calculate num spots
-
+        //calculate num spots remaining for day after db has been updated
         const dayOfWeek = findDay(state.day);
 
         const day = {
           ...state.days[dayOfWeek],
           spots: state.days[dayOfWeek].spots + 1,
         };
-    
+
         let days = state.days;
         days[dayOfWeek] = day;
-        
+
         setState({
           ...state,
           appointments
         })
-        
+
       }
     )
   }
 
-  return {cancelInterview, bookInterview, setDay, state}
+  return { cancelInterview, bookInterview, setDay, state }
 }

@@ -7,7 +7,8 @@ export default function (props) {
   const [error, setError] = useState("");
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  
+
+  //when the user confirms cancel function resets fields
   const cancel = function () {
     setStudent("");
     setInterviewer("");
@@ -16,6 +17,7 @@ export default function (props) {
     props.onCancel();
   }
 
+  //prevents a user from creating an interview without entering name
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
@@ -25,11 +27,8 @@ export default function (props) {
     props.onSave(student, interviewer);
   }
 
-  
-
   const save = function () {
     validate()
-    // props.onSave(student, interviewer)
   }
 
   return (

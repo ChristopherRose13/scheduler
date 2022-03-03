@@ -1,11 +1,12 @@
 import react from "react";
 
+//returns the appoints when user selects a day
 export function getAppointmentsForDay(state, day) {
   const apps = [];
   const daysApps = [];
   const matchedDays = state.days.filter(period => period.name === day);
-  for(const day of matchedDays) {
-    
+  for (const day of matchedDays) {
+
     apps.push(...day.appointments)
   }
 
@@ -24,7 +25,7 @@ export function getInterview(state, interview) {
   if (!interview) {
     return null;
   }
-  
+
   let formattedInterview = {};
   formattedInterview["student"] = interview.student
   formattedInterview["interviewer"] = state.interviewers[interview.interviewer]
@@ -32,11 +33,11 @@ export function getInterview(state, interview) {
   return formattedInterview;
 }
 
+//list interviewers for the user to choose from when creating new interview
 export function getInterviewersForDay(state, day) {
 
   const interviewers = [];
   const matchedDay = state.days.find(period => day === period.name);
-  console.log(matchedDay); 
 
   if (!matchedDay) {
     return []

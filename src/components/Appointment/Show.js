@@ -27,6 +27,6 @@ export default function (props) {
           />
         </section>
       </section>
-  </main> 
+    </main>
   )
 }

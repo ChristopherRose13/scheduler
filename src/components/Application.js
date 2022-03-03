@@ -19,7 +19,6 @@ export default function Application(props) {
 
 
   const interviewers = getInterviewersForDay(state, state.day)
-  // setState((prev) => {prev["interviewers"] = interviewers})
 
   const interviews = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview)
@@ -30,7 +29,7 @@ export default function Application(props) {
       interview={interview}
       interviewers={interviewers}
       bookInterview={bookInterview}
-      cancelInterview ={cancelInterview}
+      cancelInterview={cancelInterview}
     />)
   })
 
