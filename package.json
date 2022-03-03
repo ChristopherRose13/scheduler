@@ -17,7 +17,8 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public --ci",
     "build-storybook": "build-storybook -s public",
-    "proxy": "http://localhost:8001"
+    "proxy": "http://localhost:8001",
+    "cypress": "cypress open -P ."
   },
   "browserslist": {
     "production": [
@@ -43,6 +44,7 @@
     "@testing-library/react-hooks": "^7.0.2",
     "babel-loader": "^8.0.5",
     "node-sass": "^4.14.0",
+    "prop-types": "^15.8.1",
     "react-test-renderer": "^16.9.0"
   },
   "jest": {
