@@ -16,7 +16,17 @@ Interview Scheduler is a mock scheduling program that facilitates a prospective 
 
 ## Setup
 
+Run server-api on localhost 8001
+
 Install dependencies with `npm install`.
+
+axios: ^0.26.0
+classnames: ^2.2.6
+normalize.css: ^8.0.1
+react: ^16.9.0
+react-dom: ^16.9.0
+react-hooks-testing-library: ^0.6.0
+react-scripts 3.0.0
 
 ## Running Webpack Development Server
 
@@ -35,3 +45,12 @@ npm test
 ```sh
 npm run storybook
 ```
+## List of dependencies
+
+  axios: v0.26.0,
+  classnames: v2.2.6,
+  normalize.css: v8.0.1,
+  react: v16.9.0,
+  react-dom: v16.9.0,
+  react-hooks-testing-library: v0.6.0,
+  react-scripts: v3.0.0

@@ -18,9 +18,9 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public --ci",
     "build-storybook": "build-storybook -s public",
-    "proxy": "http://localhost:8001",
     "cypress": "cypress open -P ."
   },
+  "proxy": "http://localhost:8001",
   "browserslist": {
     "production": [
       ">0.2%",
