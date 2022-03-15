@@ -18,6 +18,8 @@ Interview Scheduler is a mock scheduling program that facilitates a prospective 
 
 Run server-api on localhost 8001
 
+Use https://github.com/ChristopherRose13/scheduler-api to run database
+
 Install dependencies with `npm install`.
 
 axios: ^0.26.0
