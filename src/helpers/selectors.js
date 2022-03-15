@@ -1,5 +1,3 @@
-import react from "react";
-
 //returns the appoints when user selects a day
 export function getAppointmentsForDay(state, day) {
   const apps = [];
